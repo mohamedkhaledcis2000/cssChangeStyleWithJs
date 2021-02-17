@@ -1,0 +1,78 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change style</title>
+
+
+    <!-- my style -->
+
+    <style>
+        :root{
+            --base:#ffc600;
+            --spacing: 10px;
+            --blur:10px;
+        }
+        img{
+            width: 450px;
+            height: 450px;
+            padding:var(--spacing);
+            filter: blur(var(--blur));
+            background: var(--base);
+            margin-top: 50px;
+        }
+        body{
+            background-color:darkslategray;
+        }
+        .h1{
+            color: var(--base);
+        }
+        a{
+            color: var(--base);
+            text-decoration: none;
+        }
+        input{
+            width: 100px;
+        }
+        .controls{
+            margin-bottom: 100px;
+        }
+    </style>
+</head>
+<body>
+<!-- my paragraph -->
+    <h2>Hello I am  <span class="h1">mohamed khaled abdelaziz </span> and this Css Variables with <span class="h1">JS</span></h2>
+<!--contents -->
+<div class="controls">
+   <!-- spacing -->
+    <label for="spacing">Spacing : </label>
+    <input type="range" name="spacing" min="10" max="200" value="10" data-sizing="px"> 
+
+    <!-- blur -->
+    <label for="blur">Blur : </label>
+    <input type="range" name="blur" min="0" max="25" value="10" data-sizing="px">
+
+    <!-- color -->
+    <label for="base">Base Color</label>
+    <input type="color" name="base" value="#ffffff">
+    <br>
+    <!-- image -->
+    <img src="https://scontent-hbe1-1.xx.fbcdn.net/v/t1.0-9/90293807_3592460027495239_3823131277012238336_n.jpg?_nc_cat=104&ccb=3&_nc_sid=09cbfe&_nc_ohc=zpbF5D0kdn4AX_YKKYN&_nc_ht=scontent-hbe1-1.xx&oh=914d3beeb04529303d4d345716bdd773&oe=6052B952">
+</div>
+
+<!-- my js code -->
+    <script>
+        const inputs = document.querySelectorAll('.controls input');
+
+        function handleupdate(){
+            const suffix = this.dataset.sizing || '';
+            document.documentElement.style.setProperty(`--${this.name}`,this.value+suffix);
+
+        }
+        inputs.forEach(input=>input.addEventListener('change',handleupdate));
+        inputs.forEach(input=>input.addEventListener('mousemove',handleupdate));
+
+    </script>
+</body>
+</html>
